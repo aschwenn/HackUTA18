@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StatusBar, FlatList } from 'react-native';
+import { StatusBar, FlatList, StyleSheet, Modal } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation';
-import { Container, Button, Content, Text, Icon, List, ListItem } from 'native-base';
+import { Container, Card, CardItem, Button, Content, Text, Icon, List, ListItem } from 'native-base';
 
 import styles from '../Styles/Screens/DashboardScreenStyles';
 
@@ -23,6 +23,8 @@ export default class DashboardScreen extends Component {
       tank_low: false,
       water_immediate: 0,
       plants: [],
+      modalVisible: false,
+      selectedItem: undefined,
      };
   }
 
@@ -48,6 +50,13 @@ export default class DashboardScreen extends Component {
       )
     }
   }
+
+  setModalVisible(visible, x) {
+        this.setState({
+            modalVisible: visible,
+            selectedItem: x
+        });
+    }
 
   componentDidMount = () => {
     let plantsArr = []
@@ -121,10 +130,25 @@ export default class DashboardScreen extends Component {
     ]
     return (
       <Container>
+      <StatusBar backgroundColor='#11998e' barStyle='light-content' />
+        <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
+        <Text style={styles.welcome}>Welcome to the Plant Dashboard!</Text>
+        <Text style={styles.sub}>Here you can monitor the water levels and automation schedule of your plants</Text>
+        <Text style={styles.mini}>Plants will load in from the database and be shown below</Text>
+        <Text style={styles.none}>Your plants will appear here! :)</Text>
           <List dataArray={constants} renderRow={(item) =>
               <ListItem button onPress={()=>this.setModalVisible(true, item)} >
               <Text>{item}</Text>
                 </ListItem> } />
+            <Modal
+              animationType="slide"
+              transparent={false}
+              visible={this.state.modalVisible}
+              >
+              <Card style={{paddingTop: 20}}>
+              </Card>
+            </Modal>
+          </LinearGradient>
       </Container>
     );
   }

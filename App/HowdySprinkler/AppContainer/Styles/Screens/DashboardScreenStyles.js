@@ -10,43 +10,32 @@ export default StyleSheet.create({
     color: 'white'
   },
   welcome: {
-    top: -100,
+    textAlign: 'center',
+    padding: 10,
+    fontSize: 32,
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'relative',
+  },
+  sub: {
+    textAlign: 'center',
     padding: 10,
     fontSize: 24,
     color: 'white',
     position: 'relative',
   },
-  appName: {
-    top: -100,
+  mini: {
+    textAlign: 'center',
     padding: 10,
-    fontSize: 40,
+    fontSize: 12,
     color: 'white',
-    fontWeight: 'bold',
     position: 'relative',
   },
-  addButton: {
-    alignSelf: 'center',
-    position: 'relative',
-    backgroundColor: 'rgba(52, 52, 52, 0.3)',
-  },
-  icon: {
-    alignSelf: 'center',
-    backgroundColor: '#00000000',
-    width: 100,
-    height: 100,
-  },
-  containerDash: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  dashboard: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+  none: {
+    textAlign: 'center',
     padding: 10,
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+    fontSize: 8,
+    color: 'rgb(52,52,52)',
+    position: 'relative',
   }
 });
