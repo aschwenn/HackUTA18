@@ -17,9 +17,19 @@ var connection = mysql.createConnection({
     password:   'root',
     database:   'HACKUTA'
 });
-connection.connect();
-*/
-const config = {
+connection.connect();*/
+var db = mysql.createConnection({
+    host:       'sql3.freemysqlhosting.net',
+    port:       '3306',
+    user:       'sql3260130',
+    password:   'd9zph1U6Al',
+    database:   'sql3260130'
+});
+db.connect((err) => {
+    if (err) throw err;
+    console.log('Connected to the database!');
+});
+/*const config = {
     user: 'root',
     passord: 'root',
     database: 'HACKUTA'
@@ -28,7 +38,7 @@ config.socketPath = `/cloudsql/hackuta18-218707:us-central1:hackuta18-sql`;
 const knex = Knex({
     client: 'mysql',
     connection: config
-});
+});*/
 
 // Initialize express sever
 var app = express();
@@ -50,13 +60,34 @@ app.get('/', (req, res) => {
     `);
 });
 app.get('/getData/', (req, res) => {
-    let q = knex.select('ID', 'NAME', 'AMOUNT', 'PERIOD', 'SCHEDULED', 'MOISTURE', 'WATER_IMMEDIATE', 'AMOUNT2', 'TANK_LOW')
-        .from('PLANTS')
+    //let q = knex.select('ID', 'NAME', 'AMOUNT', 'PERIOD', 'SCHEDULED', 'MOISTURE', 'WATER_IMMEDIATE', 'AMOUNT2', 'TANK_LOW')
+    //    .from('PLANTS')
     //    .then((results) => {console.log(results)} );
 
     //console.log(q.client._events.query);
 
-    res.send('gigem');
+    let sql = `SELECT * FROM HACKUTA`;
+    db.query(sql, (err, result, fields) => {
+        if (err) throw err;
+        
+        var json = [];
+        result.forEach(plant => {
+            j = {
+                id: plant.id,
+                name: plant.name,
+                amount: plant.amount,
+                period: plant.period,
+                scheduled: plant.scheduled,
+                moisture: plant.moisture,
+                water_immediate: plant.water_immediate,
+                amount2: plant.amount2,
+                tank_low: plant.tank_low
+            }
+            json.push(j);
+        });
+
+        res.send(json);
+    });
 });
 app.get('/getData2/', (req, res) => {
     let r = {
