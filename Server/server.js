@@ -35,8 +35,7 @@ app.get('/getData/', (req, res) => {
 });
 app.post('/postData/', (req, res) => {
     if (!req.body || !req.body.name || !req.body.id || !req.body.amount
-        || !req.body.period || !req.body.scheduled
-        || !req.body.water_immediate) {
+        || !req.body.period || !req.body.scheduled) {
         res.status(400).send('400 error!');
     }
     console.log('POST request for plant "' + req.body.name + '"');
