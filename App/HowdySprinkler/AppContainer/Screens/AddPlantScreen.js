@@ -13,14 +13,44 @@ export default class AddPlantScreen extends Component {
     super(props);
     this.state = {
       name: 'Alfred',
-      timeInterval: -1,
-      waterAmt: -1,
+      id: null,
+      period: -1,
+      amount: -1,
+      scheduled: false,
+      water_immediate: false,
      };
   }
 
   onValueChange(value: string) {
     this.setState({
       pickerSelected: value
+    });
+  }
+
+  sendToDatabase() {
+    const inputID = this.state.id
+    const inputName = this.state.name
+    const inputAmount = this.state.amount
+    const inputPeriod = this.state.period
+    const inputSchedule = this.state.scheduled
+    const inputImmediate = this.state.water_immediate
+
+    fetch('http://hackuta18-218707.appspot.com/postData', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: inputID,
+      name: inputName,
+      amount: inputAmount,
+      period: inputPeriod,
+      scheduled: inputSchedule,
+      water_immediate: inputImmediate,
+    })
+  }).catch((error) => {
+      console.error(error);
     });
   }
 
@@ -38,6 +68,11 @@ export default class AddPlantScreen extends Component {
       <Icon style={styles.settingsButton} name='ios-settings' />
       </Button>
     )
+  }
+
+  finishButton() {
+    this.sendToDatabase();
+    this.props.navigation.navigate('AddSuccess');
   }
 
   render() {
@@ -90,7 +125,7 @@ export default class AddPlantScreen extends Component {
                 selectTextStyle={{color: 'white'}}
                 data={dataML}
                 initValue="Select a watering amount!"
-                onChange={(option) => this.setState({waterAmt: option.value})}
+                onChange={(option) => this.setState({amount: option.value})}
               />
               <Text style={styles.lastLabel}>How often will {this.state.name} need to be watered?</Text>
               <ModalSelector
@@ -98,10 +133,10 @@ export default class AddPlantScreen extends Component {
                 selectTextStyle={{color: 'white'}}
                 data={data}
                 initValue="Select a watering interval!"
-                onChange={(option) => this.setState({timeInterval: option.value})}
+                onChange={(option) => this.setState({period: option.value})}
               />
             </Form>
-            <Button style={styles.success} onPress={() => this.props.navigation.navigate('AddSuccess')}>
+            <Button style={styles.success} onPress={this.finishButton.bind(this)}>
             <Text>Initialize Plant Diagnostics!</Text>
             </Button>
           </Content>
