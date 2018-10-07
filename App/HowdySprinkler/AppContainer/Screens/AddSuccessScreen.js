@@ -19,7 +19,7 @@ export default class HomeScreen extends Component {
       <Container>
         <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
           <Text style={styles.success}>Success!</Text>
-          <Text style={styles.midLabel}>Your plant has successfully been added and is ready for diagnostics!</Text>
+          <Text style={styles.midLabel}>Your plant has successfully been added and will be automatically watered!</Text>
           <Button large style={styles.back} onPress={() => this.props.navigation.navigate('Home')}>
           <Icon name='ios-home' />
           <Text>Go back Home to see it!</Text>

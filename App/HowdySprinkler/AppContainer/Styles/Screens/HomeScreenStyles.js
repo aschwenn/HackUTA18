@@ -6,6 +6,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  settingsButton: {
+    color: 'white'
+  },
   welcome: {
     top: -100,
     padding: 10,

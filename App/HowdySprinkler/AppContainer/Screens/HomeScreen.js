@@ -7,15 +7,35 @@ import { Container, Button, Content, Text, Icon } from 'native-base';
 import styles from '../Styles/Screens/HomeScreenStyles';
 
 export default class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-      backgroundColor: '#11998e',
-    },
-    headerTintColor: '#ffffff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
+  static navigationOptions = ({navigation}) => {
+    return {
+      title: 'Home',
+      headerStyle: {
+        backgroundColor: '#11998e',
+      },
+      headerTintColor: '#ffffff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerRight: (
+        <Button transparent>
+        <Icon style={styles.settingsButton} name='ios-settings' />
+        </Button>
+      ),
+      headerLeft: (
+        <Button transparent onPress={ () => navigation.navigate('AddPlant')}>
+        <Icon style={styles.settingsButton} name='md-add-circle' />
+        </Button>
+      )
+    }
+  }
+
+  headerPress() {
+    this.props.navigation.navigate('AddPlant')
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({handlePress: this.headerPress })
   }
 
   render() {
