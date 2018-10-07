@@ -3,18 +3,31 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var mysql = require('mysql');
+var Knex = require('knex');
+var prompt = require('prompt');
 
 // Connect to MySQL database
 /*
     process.env.VARNAME
 */
 var connection = mysql.createConnection({
-    host:       '35.192.65.25',
-    user:       'andrew',
-    password:   'GigEmAggies',
-    database:   'HowdySprinkler'
+    socketPath = '/cloudsql/hackuta18-218707:us-central1:hackuta18-sql',
+    user:       'root',
+    password:   'root',
+    database:   'HACKUTA'
 });
-//connection.connect();
+connection.connect();
+
+/*const config = {
+    user: 'root',
+    passord: 'root',
+    database: 'HACKUTA'
+};
+config.socketPath = `/cloudsql/hackuta18-218707:us-central1:hackuta18-sql`;
+const knex = Knex({
+    client: 'mysql',
+    connection: config
+});*/
 
 // Initialize express sever
 var app = express();
@@ -36,7 +49,11 @@ app.get('/', (req, res) => {
     `);
 });
 app.get('/getData/', (req, res) => {
-    let sql = '';
+    //let q = knex.select('ID', 'NAME', 'AMOUNT', 'PERIOD', 'SCHEDULED', 'MOISTURE', 'WATER_IMMEDIATE', 'AMOUNT2', 'TANK_LOW')
+    //    .from('PLANTS')
+    //    .then((results) => {console.log(results)} );
+
+    //console.log(q.client._events.query);
 
     res.send('gigem');
 });
@@ -58,7 +75,3 @@ var port = 8080;
 app.listen(port, () => {
     console.log('Server started on port ' + port);
 });
-
-
-// Close database connection
-//connection.end();
