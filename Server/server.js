@@ -10,15 +10,16 @@ var prompt = require('prompt');
 /*
     process.env.VARNAME
 */
+/*
 var connection = mysql.createConnection({
-    socketPath = '/cloudsql/hackuta18-218707:us-central1:hackuta18-sql',
+    socketPath: '/cloudsql/hackuta18-218707:us-central1:hackuta18-sql',
     user:       'root',
     password:   'root',
     database:   'HACKUTA'
 });
 connection.connect();
-
-/*const config = {
+*/
+const config = {
     user: 'root',
     passord: 'root',
     database: 'HACKUTA'
@@ -27,7 +28,7 @@ config.socketPath = `/cloudsql/hackuta18-218707:us-central1:hackuta18-sql`;
 const knex = Knex({
     client: 'mysql',
     connection: config
-});*/
+});
 
 // Initialize express sever
 var app = express();
@@ -49,13 +50,25 @@ app.get('/', (req, res) => {
     `);
 });
 app.get('/getData/', (req, res) => {
-    //let q = knex.select('ID', 'NAME', 'AMOUNT', 'PERIOD', 'SCHEDULED', 'MOISTURE', 'WATER_IMMEDIATE', 'AMOUNT2', 'TANK_LOW')
-    //    .from('PLANTS')
+    let q = knex.select('ID', 'NAME', 'AMOUNT', 'PERIOD', 'SCHEDULED', 'MOISTURE', 'WATER_IMMEDIATE', 'AMOUNT2', 'TANK_LOW')
+        .from('PLANTS')
     //    .then((results) => {console.log(results)} );
 
     //console.log(q.client._events.query);
 
     res.send('gigem');
+});
+app.get('/getData2/', (req, res) => {
+    let r = {
+        id: 1,
+        name: 'Reveille',
+        amount: 20,
+        period: 1440,
+        scheduled: true,
+        water_immediate: false
+    };
+
+    res.send(r);
 });
 app.post('/postData/', (req, res) => {
     if (!req.body || !req.body.name || !req.body.id || !req.body.amount
