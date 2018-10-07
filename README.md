@@ -1,4 +1,4 @@
-## HackUTA18
+## Howdy Sprinkler
 
 # The idea
 Our idea was to create an intuitive device that can water all of your plants for you. We wanted it to be controllable from a native mobile app (both iOS and Android, since we had both kinds of phones), and to function without ever having to touch the hardware. It's hard to find time to water house-plants in college, and this device was designed to take care of that while requiring minimal user interaction.
