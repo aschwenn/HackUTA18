@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation';
 import { Container, Button, Content, Text, Icon } from 'native-base';
