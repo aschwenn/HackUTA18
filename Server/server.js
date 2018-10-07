@@ -46,10 +46,11 @@ app.post('/postData/', (req, res) => {
         res.status(400).send('400 error!');
     }
     console.log('POST request for plant "' + req.body.name + '"');
+    console.log(req.body);
 
     let sql = '';
 
-    res.send('id ' + id);
+    res.send(req.body);
 });
 
 // Start server on a port
