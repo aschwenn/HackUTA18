@@ -34,5 +34,16 @@ export default StyleSheet.create({
     backgroundColor: '#00000000',
     width: 100,
     height: 100,
+  },
+  containerDash: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  dashboard: {
+    padding: 10,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
   }
 });

@@ -14,6 +14,7 @@ import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './AppContainer/Screens/HomeScreen';
 import AddPlantScreen from './AppContainer/Screens/AddPlantScreen';
 import AddSuccessScreen from './AppContainer/Screens/AddSuccessScreen';
+import PlantInfoScreen from './AppContainer/Screens/PlantInfoScreen';
 
 const RootStack = createStackNavigator(
   {
@@ -26,7 +27,10 @@ const RootStack = createStackNavigator(
     AddSuccess: {
       screen: AddSuccessScreen,
       headerMode: 'screen',
-    }
+    },
+    PlantInfo: {
+      screen: PlantInfoScreen,
+    },
   },
   {
     initialRouteName: 'Home',
