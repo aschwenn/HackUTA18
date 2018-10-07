@@ -7,7 +7,22 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   welcome: {
-    padding: 30,
+    top: -100,
+    padding: 10,
+    fontSize: 24,
     color: 'white',
+    position: 'relative',
   },
+  appName: {
+    top: -100,
+    padding: 10,
+    fontSize: 40,
+    color: 'white',
+    fontWeight: 'bold',
+    position: 'relative',
+  },
+  addButton: {
+    position: 'relative',
+    backgroundColor: 'rgba(52, 52, 52, 0.3)',
+  }
 });
