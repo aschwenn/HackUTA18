@@ -107,11 +107,53 @@ app.post('/postData/', (req, res) => {
         res.status(400).send('400 error!');
     }
     console.log('POST request for plant "' + req.body.name + '"');
-    console.log(req.body);
 
-    let sql = '';
+    let sql = 'SELECT * FROM `HACKUTA` WHERE id=' + req.body.id;
+    db.query(sql, (err, result, fields) => {
+        if (err) res.status(200).send(err);
 
-    res.send(req.body);
+        console.log('constructing post query');
+        let a = `name='`+req.body.name+`',amount=`+req.body.amount+',period='+req.body.period+',scheduled='+req.body.scheduled+',water_immediate='+req.body.water_immediate;
+        let b = `'` + req.body.name + `',` + req.body.amount + ',' + req.body.period + ',' + req.body.scheduled + ',' + req.body.water_immediate;
+        let insert = 'id, name, amount, period, scheduled, water_immediate';
+        if (req.body.moisture) {
+            a += ',moisture='+req.body.moisture;
+            b += ','+req.body.moisture;
+            insert += ',moisture';
+        }
+        if (req.body.amount2) {
+            a += ',amount2='+req.body.amount2;
+            b += ','+req.body.amount2;
+            insert += ',amount2';
+        }
+        if (req.body.tank_low) {
+            a += ',tank_low='+req.body.tank_low;
+            b += ','+req.body.tank_low;
+            insert += ',tank_low';
+        }
+
+        console.log('determining insert or update');
+        if (result.length == 1) {
+            // UPDATE
+            let sql2 = `UPDATE HACKUTA SET ` + a + ` WHERE id=1`;
+            console.log(sql2);
+            db.query(sql2, (err2, result2, fields2) => {
+                if (err2) res.status(200).send(err2);
+    
+                res.send(result2);
+            });
+        }
+        else {
+            // INSERT
+            let sql2 = 'INSERT INTO HACKUTA (' + insert + ') VALUES (NULL,' + b + ')';
+            console.log(sql2);
+            db.query(sql2, (err2, result2, fields2) => {
+                if (err2) res.status(200).send(err2);
+    
+                res.send(result2);
+            });
+        }
+    });
 });
 
 // Start server on a port
