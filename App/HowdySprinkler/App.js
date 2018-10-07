@@ -8,44 +8,35 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { createStackNavigator } from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+//import { HomeScreen, AddPlantScreen } from './AppContainer/Screens'
+import HomeScreen from './AppContainer/Screens/HomeScreen';
+import AddPlantScreen from './AppContainer/Screens/AddPlantScreen';
 
-type Props = {};
-export default class App extends Component<Props> {
+const RootStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    AddPlant: {
+      screen: AddPlantScreen,
+    },
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+export default class App extends Component {
   render() {
     return (
-      <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
+      /*<LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-      </LinearGradient>
+      </LinearGradient>*/
+      <RootStack />
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'white'
-  },
-  instructions: {
-    textAlign: 'center',
-    color: 'white',
-    marginBottom: 5,
-  },
-});
