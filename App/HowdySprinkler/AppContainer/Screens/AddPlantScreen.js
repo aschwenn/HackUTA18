@@ -99,7 +99,7 @@ export default class AddPlantScreen extends Component {
                 onChange={(option) => this.setState({timeInterval: option.value})}
               />
             </Form>
-            <Button style={styles.success} onPress={() => this.props.navigation.navigate('AddSucess')}>
+            <Button style={styles.success} onPress={() => this.props.navigation.navigate('AddSuccess')}>
             <Text>Initialize Plant Diagnostics!</Text>
             </Button>
           </Content>
