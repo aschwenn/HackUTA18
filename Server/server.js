@@ -26,7 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTP request handlers
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send(`
+    <head>
+        <title>Howdy</title>
+    </head>
+    <body style="margin:0;background:linear-gradient(#11998e,#38ef7d);top:50%;position:absolute;padding-left: 44%;font-family: Arial;">
+        <h1 style="color:white;"><center>Hello, World!</center></h1>
+    </body>
+    `);
 });
 app.get('/getData/', (req, res) => {
     let sql = '';
