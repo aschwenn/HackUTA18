@@ -16,8 +16,8 @@ export default class AddPlantScreen extends Component {
       id: null,
       period: -1,
       amount: -1,
-      scheduled: false,
-      water_immediate: false,
+      scheduled: true,
+      water_immediate: true,
      };
   }
 
