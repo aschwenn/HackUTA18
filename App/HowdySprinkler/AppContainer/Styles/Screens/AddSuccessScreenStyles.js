@@ -11,6 +11,7 @@ export default StyleSheet.create({
     //padding: 5,
     fontSize: 64,
     color: 'white',
+    fontWeight: 'bold',
     position: 'relative',
   },
   midLabel: {

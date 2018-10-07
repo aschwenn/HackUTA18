@@ -30,14 +30,6 @@ export default class HomeScreen extends Component {
     }
   }
 
-  headerPress() {
-    this.props.navigation.navigate('AddPlant')
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({handlePress: this.headerPress })
-  }
-
   render() {
     return (
       <Container>
