@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { createStackNavigator } from 'react-navigation';
 import { Container, Form, Button, Content, Text, Icon, Item, Input } from 'native-base';
@@ -76,6 +77,7 @@ export default class AddPlantScreen extends Component {
     return (
       <Container>
         <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
+        <StatusBar backgroundColor='#11998e' barStyle='light-content' />
           <Content>
             <Text style={styles.label}>Enter a name for your plant!</Text>
             <Form>
