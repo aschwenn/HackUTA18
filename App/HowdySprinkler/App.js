@@ -22,6 +22,10 @@ const RootStack = createStackNavigator(
     AddPlant: {
       screen: AddPlantScreen,
     },
+    AddSuccess: {
+      screen: AddSucessScreen,
+      headerMode: 'screen',
+    }
   },
   {
     initialRouteName: 'Home',

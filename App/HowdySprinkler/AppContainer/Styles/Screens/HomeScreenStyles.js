@@ -22,7 +22,14 @@ export default StyleSheet.create({
     position: 'relative',
   },
   addButton: {
+    alignSelf: 'center',
     position: 'relative',
     backgroundColor: 'rgba(52, 52, 52, 0.3)',
+  },
+  icon: {
+    alignSelf: 'center',
+    backgroundColor: '#00000000',
+    width: 100,
+    height: 100,
   }
 });
