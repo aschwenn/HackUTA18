@@ -14,8 +14,16 @@ export default class HomeScreen extends Component {
       timeInterval: -1,
       waterAmt: -1,
       firstTime: true,
-      plants: {},
-      test: 'Nope',
+      amount: 0,
+      amount2: 0,
+      id: 0,
+      moisture: 0,
+      name: 'null',
+      period: 0,
+      scheduled: 0,
+      tank_low: false,
+      water_immediate: 0,
+      plants: [],
      };
   }
 
@@ -43,6 +51,7 @@ export default class HomeScreen extends Component {
   }
 
   /*componentDidMount = () => {
+    let plants = []
     fetch('http://hackuta18-218707.appspot.com/getData', {
       method: 'GET'
     })
@@ -50,16 +59,39 @@ export default class HomeScreen extends Component {
       .then((responseJson) => {
          console.log(responseJson);
 
-         JSON.stringify(responseJson)
+         plants = responseJson;
+
+         if(plants.length === 0){
+           this.state.firstTime = true
+         }
 
          this.setState({
-            test: responseJson
+            plants: plants,
          })
+
+         this.renderPlantDash()
       })
       .catch((error) => {
          console.error(error);
       });
-  }*/
+  }
+
+  renderPlantDash() {
+    let i = 0;
+    for(i; i < this.state.plants.length; i++){
+      this.setState({
+         amount: responseJson[i].amount,
+         amount2: responseJson[i].amount2,
+         id: responseJson[i].id,
+         moisture: responseJson[i].moisture,
+         name: responseJson[i].name,
+         period: responseJson[i].period,
+         scheduled: responseJson[i].scheduled,
+         tank_low: responseJson[i].tank_low,
+         water_immediate: responseJson.water_immediate,
+      })
+    }
+  }
 
   openPlantInfoScreen = (doc) => {
     this.props.navigation.push({
@@ -68,7 +100,7 @@ export default class HomeScreen extends Component {
       passProps: {doc: doc},
       title: doc.title
     })
-  }
+  }*/
 
   render() {
     return (
@@ -79,7 +111,6 @@ export default class HomeScreen extends Component {
           <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.container}>
           <Text style={styles.welcome}>Welcome to</Text>
           <Text style={styles.appName}>Howdy Sprinkler!</Text>
-          <Text style={styles.welcome}>Testing Fetch:{this.state.test}</Text>
           <Button style={styles.addButton} onPress={() => this.props.navigation.navigate('AddPlant')}>
           <Icon name='ios-add'></Icon>
           <Text>Add a plant to be auto watered!</Text>
@@ -91,9 +122,10 @@ export default class HomeScreen extends Component {
             <React.Fragment>
             <LinearGradient colors={['#11998e', '#38ef7d']} style={styles.containerDash}>
             <Text style={styles.dashboard}>Plant Dashboard</Text>
+            this.createPlantCards()
             <List
               dataArray={this.state.plants}
-              renderRow={(plant) => <PlantCard {...plant} onPress={() => {this.openPlantInfoScreen(plant)}}/>}/>
+              />
             </LinearGradient>
             </React.Fragment>
           }

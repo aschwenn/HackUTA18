@@ -15,6 +15,7 @@ import HomeScreen from './AppContainer/Screens/HomeScreen';
 import AddPlantScreen from './AppContainer/Screens/AddPlantScreen';
 import AddSuccessScreen from './AppContainer/Screens/AddSuccessScreen';
 import PlantInfoScreen from './AppContainer/Screens/PlantInfoScreen';
+import DashboardScreen from './AppContainer/Screens/DashboardScreen';
 
 const RootStack = createStackNavigator(
   {
@@ -31,6 +32,9 @@ const RootStack = createStackNavigator(
     PlantInfo: {
       screen: PlantInfoScreen,
     },
+    Dashboard: {
+      screen: DashboardScreen,
+    }
   },
   {
     initialRouteName: 'Home',

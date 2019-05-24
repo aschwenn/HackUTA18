@@ -21,7 +21,7 @@ export default class AddSuccessScreen extends Component {
           <StatusBar backgroundColor='#11998e' barStyle='light-content' />
           <Text style={styles.success}>Success!</Text>
           <Text style={styles.midLabel}>Your plant has successfully been added and will be automatically watered!</Text>
-          <Button large style={styles.back} onPress={() => this.props.navigation.navigate('Home')}>
+          <Button large style={styles.back} onPress={() => this.props.navigation.navigate('Dashboard')}>
           <Icon name='ios-home' />
           <Text>Go back Home to see it!</Text>
           </Button>
