@@ -4,10 +4,7 @@
 Our idea was to create an intuitive device that can water all of your plants for you. We wanted it to be controllable from a native mobile app (both iOS and Android, since we had both kinds of phones), and to function without ever having to touch the hardware. It's hard to find time to water house-plants in college, and this device was designed to take care of that while requiring minimal user interaction.
 
 <img src="/images/image1.jpeg" height="500">
-<img src="/images/large.jpg" height="500">
-<img src="/images/large2.jpg" height="500">
-<img src="/images/large3.jpg" height="500">
-
+<img src="/images/large.jpg" height="500"> <img src="/images/large2.jpg" height="500"> <img src="/images/large3.jpg" height="500">
 
 # How we built it
 We built the **electronics** side of the project was built using a Raspberry Pi, a water pump, a moisture sensor, and a few other electrical components. The water pump we used to water the plant itself required a 12V DC 400mA input, so we used a MOSFET transistor to allow current to flow into the water pump when a "high" voltage was sent from the Raspberry Pi GPIO pins into the gate. We used an analog moisture sensor and an analog-to-digital converter (ADC) to convert the signal to be read by the Pi. The Pi was set to sleep most of the time to conserve power and would wake up at certain intervals in order to check the database for any changes as well as take readings to relay to the frontend. We tried to solder the electronics together for a more permanent solution but ended up pressed for time towards the end.
